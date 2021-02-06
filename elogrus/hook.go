@@ -36,7 +36,7 @@ type message struct {
 	Host string `json:"Host,omitempty"`
 	// File      string `json:"File,omitempty"`
 	Func      string `json:"Func,omitempty"`
-	Line      string `json:"line,omitempty"`
+	Line      int    `json:"line,omitempty"`
 	Level     string `json:"Level,omitempty"`
 	Message   string `json:"Message,omitempty"`
 	Data      logrus.Fields
@@ -176,11 +176,11 @@ func createMessage(entry *logrus.Entry, hook *ElasticHook) *message {
 		}
 	}
 
-	var file string
+	// var file string
 	var function string
 	var line int
 	if entry.HasCaller() {
-		file = entry.Caller.File
+		// file = entry.Caller.File
 		function = entry.Caller.Function
 		line = entry.Caller.Line
 	}
